@@ -88,7 +88,7 @@ module.exports = yeoman.generators.Base.extend({
             this.destinationPath('.bowerrc')
           );
           this.fs.copyTpl(
-            this.templatePath('_keys/keys.json')
+            this.templatePath('_keys/keys.json'),
             this.destinationPath('keys/keys.json'), {
               mongodb_uri:this.props.mongodb_uri
             }
