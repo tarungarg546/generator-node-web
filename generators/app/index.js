@@ -3,79 +3,51 @@
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
-var welcome =
-'\n     _-----_' +
-'\n    |       |' +
-'\n    |' + '--(o)--'.red + '|   .--------------------------.' +
-'\n   `---------´  |    ' + 'Welcome to Yeoman,'.yellow.bold + '    |' +
-'\n    ' + '( '.yellow + '_' + '´U`'.yellow + '_' + ' )'.yellow + '   |   ' + 'ladies and gentlemen!'.yellow.bold + '  |' +
-'\n    /___A___\\   \'__________________________\'' +
-'\n     |  ~  |'.yellow +
-'\n   __' + '\'.___.\''.yellow + '__' +
-'\n ´   ' + '`  |'.red + '° ' + '´ Y'.red + ' `\n';
-
-console.log(welcome);
 
 module.exports = yeoman.Base.extend({
   //Configurations will be loaded here.
   //Ask for user input
   prompting: function() {
-    var done=this.aysnc();
-    this.prompt({
-      type: 'input',
-      name: 'name',
-      message: 'Your project name :- ',
-      //Defaults to the project's folder name if the input is skipped
-      default: this.appname,
-      done()
-    }, function(answer) {
-      this.props = answer;
-      this.log(answer.name);
+    var done = this.async(); 
+    // have Yeoman greet the user
+    console.log(this.yeoman);
+    var prompts = [{
+                      type: 'input',
+                      name: 'name',
+                      message: 'Your project name :- ',
+                      //Defaults to the project's folder name if the input is skipped
+                      default: this.appname
+                    },{
+                      type: 'input',
+                      name: 'description',
+                      message: 'Your project\'s description :- ',
+                      //Defaults to the project's folder name if the input is skipped
+                      default: this.appname
+                    },{
+                      type:'input',
+                      name:'github',
+                      message:'Github project link :- '
+                    },{
+                      type:"list",
+                      name:"ui",
+                      choices:["bootstrap","materialize","None"],
+                      message:"Select client side library you wanna use :- ",
+                      default:"bootstrap"
+                    },{
+                      type:'type',
+                      name:'mongodb_uri',
+                      message:'Enter mongodb url you wants to connect to :- '
+                    },{
+                      type:'confirm',
+                      name:'angular',
+                      message:'Are you using AngularJS in your project :- '
+                    }];
+
+    this.prompt(prompts, function (props) {
+        this.props=props;
+
+        done();
     }.bind(this));
-    this.prompt({
-      type: 'input',
-      name: 'description',
-      message: 'Your project\'s description :- ',
-      //Defaults to the project's folder name if the input is skipped
-      default: this.appname
-    }, function(answer) {
-      this.props = answer;
-      this.log(answer.description);
-    }.bind(this));
-    this.prompt({
-      type:'input',
-      name:'github',
-      message:'Github project link :- '
-    }, function(answer) {
-      this.props = answer;
-      this.log(answer.github);
-    }.bind(this));
-    this.prompt({
-      type:"list",
-      name:"ui",
-      choices:["bootstrap","materialize","None"],
-      message:"Select client side library you wanna use :- ",
-      default:"bootstrap"
-    },function(answer) {
-      this.props = answer;
-      this.log(answer.ui);
-    }.bind(this));
-    this.prompt({
-      type:'type',
-      name:'mongodb_uri',
-      message:'Enter mongodb url you wants to connect to :- '
-    }, function(answer) {
-      this.props = answer;
-      this.log(answer.mongodb_uri);
-    }.bind(this));
-    this.prompt({
-      type:'confirm',
-      name:'angular',
-      message:'Are you using AngularJS in your project :- '
-    },function(answer) {
-      this.props=answer;
-      this.log(answer.angular)
-    }.bind(this))
   },
   writing: {
     //Copy the configuration files
