@@ -1,0 +1,19 @@
+{
+    "name": "<%= name %>",  
+    "version": "1.0.0",
+    "description": "<%= description %>",  
+    "scripts": {
+        "start": "node server.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "<%= github %>"
+    },
+    "dependencies": {
+        "express": "^4.13.4",
+        "cookie-parser": "^1.4.3",       
+        "body-parser": "^1.15.1",
+        "<% if(database === 'MangoDB') { %>"
+        "ejs": "^2.4.2"
+    }     
+}
