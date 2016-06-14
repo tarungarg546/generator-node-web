@@ -12,6 +12,9 @@ module.exports = yeoman.Base.extend({
     this.argument('appname', { type: String, required: true });
     // And you can then access it later on this way; e.g. CamelCased
     this.appname = this.appname;
+    ///change paths
+    var npmdir = process.cwd() + "/"+this.appname;
+    process.chdir(npmdir);
   },
   //Configurations will be loaded here.
   //Ask for user input
@@ -54,9 +57,6 @@ module.exports = yeoman.Base.extend({
 
         done();
     }.bind(this));
-  },
-  paths:{
-    this.destinationPath("/"+this.appname);
   },
   writing: {
     //Copy the configuration files
