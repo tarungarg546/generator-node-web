@@ -62,7 +62,7 @@ module.exports = yeoman.Base.extend({
     config: function () {
           this.fs.copyTpl(
               this.templatePath('_package.json'),
-              this.destinationPath('package.json'), {
+              this.destinationPath(this.props.name+'/package.json'), {
                   name: this.props.name,
                   description:this.props.description,
                   github:this.props.github
@@ -70,18 +70,17 @@ module.exports = yeoman.Base.extend({
           );
           this.fs.copyTpl(
               this.templatePath('_bower.json'),
-              this.destinationPath('bower.json'), {
-                  name: this.props.name,
-                  ui:this.props.ui
+              this.destinationPath(this.props.name+'/bower.json'), {
+                  name: this.props.name
               }
           );
           this.fs.copy(
             this.templatePath('bowerrc'),
-            this.destinationPath('.bowerrc')
+            this.destinationPath(this.props.name+'/.bowerrc')
           );
           this.fs.copyTpl(
             this.templatePath('_keys/_keys.json'),
-            this.destinationPath('keys/keys.json'), {
+            this.destinationPath(this.props.name+'/keys/keys.json'), {
               mongodb_uri:this.props.mongodb_uri
             }
           );
@@ -92,41 +91,42 @@ module.exports = yeoman.Base.extend({
         //Server file
         this.fs.copy(
           this.templatePath('_server.js'),
-          this.destinationPath('server.js')
+          this.destinationPath(this.props.name+'/server.js')
         );
         //Routes
         this.fs.copy(
           this.templatePath('_routes/_todo.js'),
-          this.destinationPath('routes/todo.js'));
+          this.destinationPath(this.props.name+'/routes/todo.js'));
 
 
         // Model
         this.fs.copy(
           this.templatePath('_model/_todo.js'),
-          this.destinationPath('model/todo.js'));
+          this.destinationPath(this.props.name+'/model/todo.js'));
 
         // Views
         this.fs.copyTpl(
           this.templatePath('_views/_index.ejs'),
-          this.destinationPath('/views/index.ejs'), {
-            title: this.props.name
+          this.destinationPath(this.props.name+'/views/index.ejs'), {
+            title: this.props.name,
+            ui: this.props.ui
           }
         );
 
         // Public
         this.fs.copy(
           this.templatePath('_public/_css/_app.css'),
-          this.destinationPath('public/css/app.css')
+          this.destinationPath(this.props.name+'/public/css/app.css')
         );
         this.fs.copy(
           this.templatePath('_public/_js/_app.js'),
-          this.destinationPath('public/js/app.js')
+          this.destinationPath(this.props.name+'/public/js/app.js')
         );
 
         //database files
         this.fs.copy(
           this.templatePath('_db/_connector.js'),
-          this.destinationPath('db/connector.js')
+          this.destinationPath(this.props.name+'/db/connector.js')
         )
       },
     //Install Dependencies
