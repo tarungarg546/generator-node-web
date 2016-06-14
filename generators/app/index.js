@@ -136,7 +136,7 @@ module.exports = yeoman.generators.Base.extend({
           this.templatePath('_db/_connector.js'),
           this.destinationPath('db/connector.js')
         )
-      }
+      },
     //Install Dependencies
     install: function() {
         this.installDependencies();
