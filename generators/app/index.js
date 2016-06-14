@@ -3,8 +3,8 @@
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
+var path = require('path');
 console.log(yosay('Hello, and welcome to my fantastic generator . \n Found bug? Send Issue or PR :)'));
-
 module.exports = yeoman.Base.extend({
   constructor: function () {
     yeoman.Base.apply(this, arguments);
@@ -12,9 +12,10 @@ module.exports = yeoman.Base.extend({
     this.argument('appname', { type: String, required: true });
     // And you can then access it later on this way; e.g. CamelCased
     this.appname = this.appname;
-    ///change paths
-    var npmdir = process.cwd() + "/"+this.appname;
-    process.chdir(npmdir);
+  },
+  paths:function(){
+    this.destinationRoot(path.join(this.destinationRoot(), '/' + this.appname));
+
   },
   //Configurations will be loaded here.
   //Ask for user input
