@@ -49,11 +49,6 @@ module.exports = yeoman.Base.extend({
                       name:'mongodb_uri',
                       message:'Enter mongodb url you wants to connect to :- ',
                       store   : true
-                    },{
-                      type:'confirm',
-                      name:'angular',
-                      message:'Are you using AngularJS in your project :- ',
-                      store   : true
                     }];
 
     this.prompt(prompts).then(function(props) {
@@ -77,7 +72,6 @@ module.exports = yeoman.Base.extend({
               this.templatePath('_bower.json'),
               this.destinationPath('bower.json'), {
                   name: this.props.name,
-                  angular: this.props.angular,
                   ui:this.props.ui
               }
           );

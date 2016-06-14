@@ -2,13 +2,7 @@
     "name": "<%= name %>",
     "version": "1.0.0",
     "dependencies": {
-    	"<% if(ui === 'bootstrap') { %>"
-        "bootstrap":"3.3.5",
-        "<% } else if(ui=='materialize') { %>"
-        "materialize":"0.97.6",
-        "<% } %>"
-        "<% if(angular) { %>"
+    	"<% if(ui === 'bootstrap') { \"bootstrap\":\"3.3.5\", } else if(ui==='materialize'){ \"materialize\":\"0.97.6\",}%>"
         "angular":"1.5.3"
-        "<% } %>"
     }
 }
