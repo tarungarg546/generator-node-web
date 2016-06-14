@@ -14,8 +14,8 @@ module.exports = yeoman.Base.extend({
     this.appname = this.appname;
   },
   paths:function(){
+    this.log(path.join(this.destinationRoot(), '/' + this.appname));
     this.destinationRoot(path.join(this.destinationRoot(), '/' + this.appname));
-
   },
   //Configurations will be loaded here.
   //Ask for user input
@@ -64,7 +64,7 @@ module.exports = yeoman.Base.extend({
     config: function () {
           this.fs.copyTpl(
               this.templatePath('_package.json'),
-              this.destinationPath('/package.json'), {
+              this.destinationPath('package.json'), {
                   name: this.props.name,
                   description:this.props.description,
                   github:this.props.github
@@ -72,17 +72,17 @@ module.exports = yeoman.Base.extend({
           );
           this.fs.copyTpl(
               this.templatePath('_bower.json'),
-              this.destinationPath('/bower.json'), {
+              this.destinationPath('bower.json'), {
                   name: this.props.name
               }
           );
           this.fs.copy(
             this.templatePath('bowerrc'),
-            this.destinationPath('/.bowerrc')
+            this.destinationPath('.bowerrc')
           );
           this.fs.copyTpl(
             this.templatePath('_keys/_keys.json'),
-            this.destinationPath('/keys/keys.json'), {
+            this.destinationPath('keys/keys.json'), {
               mongodb_uri:this.props.mongodb_uri
             }
           );
@@ -93,23 +93,26 @@ module.exports = yeoman.Base.extend({
         //Server file
         this.fs.copy(
           this.templatePath('_server.js'),
-          this.destinationPath('/server.js')
+          this.destinationPath('server.js')
         );
         //Routes
         this.fs.copy(
           this.templatePath('_routes/_todo.js'),
-          this.destinationPath('/routes/todo.js'));
+          this.destinationPath('routes/todo.js'));
 
-
+        //config
+        this.fs.copy(
+          this.templatePath('config/express.js'),
+          this.destinationPath('config/express.js'));
         // Model
         this.fs.copy(
           this.templatePath('_model/_todo.js'),
-          this.destinationPath('/model/todo.js'));
+          this.destinationPath('model/todo.js'));
 
         // Views
         this.fs.copyTpl(
           this.templatePath('_views/_index.ejs'),
-          this.destinationPath('/views/index.ejs'), {
+          this.destinationPath('views/index.ejs'), {
             title: this.props.name,
             ui: this.props.ui
           }
@@ -118,17 +121,17 @@ module.exports = yeoman.Base.extend({
         // Public
         this.fs.copy(
           this.templatePath('_public/_css/_app.css'),
-          this.destinationPath('/public/css/app.css')
+          this.destinationPath('public/css/app.css')
         );
         this.fs.copy(
           this.templatePath('_public/_js/_app.js'),
-          this.destinationPath('/public/js/app.js')
+          this.destinationPath('public/js/app.js')
         );
 
         //database files
         this.fs.copy(
           this.templatePath('_db/_connector.js'),
-          this.destinationPath('/db/connector.js')
+          this.destinationPath('db/connector.js')
         )
       },
     //Install Dependencies
