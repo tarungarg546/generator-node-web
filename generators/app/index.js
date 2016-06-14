@@ -3,8 +3,17 @@
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
+console.log(yosay('Hello, and welcome to my fantastic generator . \n Found bug? Send Issue or PR :)'));
 
 module.exports = yeoman.Base.extend({
+  constructor: function () {
+    yeoman.Base.apply(this, arguments);
+
+    // This makes `appname` a required argument.
+    this.argument('appname', { type: String, required: true });
+    // And you can then access it later on this way; e.g. CamelCased
+    this.appname = this.appname;
+  },
   //Configurations will be loaded here.
   //Ask for user input
   prompting: function() {
@@ -26,24 +35,28 @@ module.exports = yeoman.Base.extend({
                     },{
                       type:'input',
                       name:'github',
-                      message:'Github project link :- '
+                      message:'Github project link :- ',
+                      store   : true
                     },{
                       type:"list",
                       name:"ui",
                       choices:["bootstrap","materialize","None"],
                       message:"Select client side library you wanna use :- ",
-                      default:"bootstrap"
+                      default:"bootstrap",
+                      store   : true
                     },{
                       type:'type',
                       name:'mongodb_uri',
-                      message:'Enter mongodb url you wants to connect to :- '
+                      message:'Enter mongodb url you wants to connect to :- ',
+                      store   : true
                     },{
                       type:'confirm',
                       name:'angular',
-                      message:'Are you using AngularJS in your project :- '
+                      message:'Are you using AngularJS in your project :- ',
+                      store   : true
                     }];
 
-    this.prompt(prompts, function (props) {
+    this.prompt(prompts).then(function(props) {
         this.props=props;
 
         done();
