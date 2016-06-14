@@ -3,9 +3,20 @@
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
+var welcome =
+'\n     _-----_' +
+'\n    |       |' +
+'\n    |' + '--(o)--'.red + '|   .--------------------------.' +
+'\n   `---------´  |    ' + 'Welcome to Yeoman,'.yellow.bold + '    |' +
+'\n    ' + '( '.yellow + '_' + '´U`'.yellow + '_' + ' )'.yellow + '   |   ' + 'ladies and gentlemen!'.yellow.bold + '  |' +
+'\n    /___A___\\   \'__________________________\'' +
+'\n     |  ~  |'.yellow +
+'\n   __' + '\'.___.\''.yellow + '__' +
+'\n ´   ' + '`  |'.red + '° ' + '´ Y'.red + ' `\n';
 
+console.log(welcome);
 
-module.exports = yeoman.generators.Base.extend({
+module.exports = yeoman.Base.extend({
   //Configurations will be loaded here.
   //Ask for user input
   prompting: function() {
@@ -15,7 +26,8 @@ module.exports = yeoman.generators.Base.extend({
       name: 'name',
       message: 'Your project name :- ',
       //Defaults to the project's folder name if the input is skipped
-      default: this.appname
+      default: this.appname,
+      done()
     }, function(answer) {
       this.props = answer;
       this.log(answer.name);
