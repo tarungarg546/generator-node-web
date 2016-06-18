@@ -1,9 +1,9 @@
  'use strict';
 //Require dependencies
-var yeoman = require('yeoman-generator');
-var chalk = require('chalk');
-var yosay = require('yosay');
-var path = require('path');
+const yeoman = require('yeoman-generator');
+const chalk = require('chalk');
+const yosay = require('yosay');
+const path = require('path');
 console.log(yosay('Hello, and welcome to my fantastic generator . \n Found bug? Send Issue or PR :)'));
 module.exports = yeoman.Base.extend({
   constructor: function () {
@@ -40,11 +40,11 @@ module.exports = yeoman.Base.extend({
                       message:'Github project link :- ',
                       store   : true
                     },{
-                      type:"list",
-                      name:"ui",
-                      choices:["bootstrap","materialize","None"],
-                      message:"Select client side library you wanna use :- ",
-                      default:"bootstrap",
+                      type:'list',
+                      name:'ui',
+                      choices:['bootstrap','materialize','None'],
+                      message:'Select client side library you wanna use :- ',
+                      default:'bootstrap',
                       store   : true
                     },{
                       type:'type',

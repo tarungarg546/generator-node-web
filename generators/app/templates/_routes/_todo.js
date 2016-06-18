@@ -1,24 +1,28 @@
-var express = require('express');
+'use strict';
 
-var Todo = require('../model/todo');
+const express = require('express');
 
-var router = express.Router();
+const Todo = require('../model/todo');
+
+const router = express.Router();
 
 
-router.get('/', function(req, res) {
-  	console.log('GET handler for /todo route.');
-	Todo.find().exec(function(err, todo){
-		if (err)
+router.get('/', (req, res) => {
+  console.log('GET handler for /todo route.');
+	Todo.find().exec((err, todo) => {
+		if (err) {
 		  return res.send(err);
+    }
 		return res.json(todo);
-  	});
+  });
 });
 
-router.post('/', function(req, res) {
+router.post('/', (req, res) => {
 	console.log('POST handler for /todo route.');
-	Todo.create(req.body, function(err, todo){
-		if (err)
+	Todo.create(req.body, (err, todo) => {
+		if (err) {
 		  return res.send(err);
+    }
 		return res.json(todo);
 	});
 });

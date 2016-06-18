@@ -11,6 +11,9 @@
   "files": [
     "generators"
   ],
+  "engines":{
+    "node":">=4"
+  },
   "main": "generators\\index.js",
   "keywords": [
     "Node",
