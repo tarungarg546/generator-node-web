@@ -20,7 +20,7 @@ module.exports = yeoman.Base.extend({
   //Configurations will be loaded here.
   //Ask for user input
   prompting: function() {
-    var done = this.async(); 
+    var done = this.async();
     // have Yeoman greet the user
     var prompts = [{
                       type: 'input',
@@ -75,6 +75,10 @@ module.exports = yeoman.Base.extend({
               this.destinationPath('bower.json'), {
                   name: this.props.name
               }
+          );
+          this.fs.copy(
+              this.templatePath('gitignore')
+              this.destinationPath('.gitignore')
           );
           this.fs.copy(
             this.templatePath('bowerrc'),
