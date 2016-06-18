@@ -3,14 +3,14 @@
   <head>
     <title><%= title %></title>
     <meta charset="UTF-8">
-    <meta name="description" content="<>">
-    <meta name="keywords" content="CSV,Java">
-    <meta name="author" content="Mango People">
+    <meta name="description" content="<%= description %>">
+    <meta name="keywords" content="<%= keyword %>">
+    <meta name="author" content="<%= title %>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/app.css">
     <% if (ui === 'bootstrap') { %>
     <link rel="stylesheet" type="text/css" href="lib/bootstrap/bootstrap.min.css">
-    <% } else { %>
+    <% } else if(ui=='materialize'){ %>
     <link rel="stylesheet" type="text/css" href="lib/materialize/materialize.min.css">
     <% } %>
   </head>

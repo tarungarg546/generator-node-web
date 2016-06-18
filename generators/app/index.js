@@ -35,6 +35,11 @@ module.exports = yeoman.Base.extend({
                       //Defaults to the project's folder name if the input is skipped
                       default: this.appname
                     },{
+                      type: 'input',
+                      name: 'keyword',
+                      message: 'Keywords that define your project:- '
+                    },
+                    {
                       type:'input',
                       name:'github',
                       message:'Github project link :- ',
@@ -118,7 +123,9 @@ module.exports = yeoman.Base.extend({
           this.templatePath('_views/_index.ejs'),
           this.destinationPath('views/index.ejs'), {
             title: this.props.name,
-            ui: this.props.ui
+            ui: this.props.ui,
+            keyword:this.props.keyword,
+            description:this.props.description
           }
         );
 
