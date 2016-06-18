@@ -1,6 +1,6 @@
 {
   "name": "generator-node-web",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "A simple project structure genertor for web apps built with node",
   "homepage": "",
   "author": {
@@ -11,8 +11,8 @@
   "files": [
     "generators"
   ],
-  "engines":{
-    "node":">=4"
+  "engines": {
+    "node": ">=4"
   },
   "main": "generators\\index.js",
   "keywords": [
